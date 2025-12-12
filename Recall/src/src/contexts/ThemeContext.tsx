@@ -11,40 +11,12 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== 'undefined') {
-      return (localStorage.getItem('recall-theme') as Theme) || 'system';
-    }
-    return 'system';
-  });
+  const [theme, setTheme] = useState<Theme>('light');
 
-  const [actualTheme, setActualTheme] = useState<'dark' | 'light'>(() => {
-    if (typeof window !== 'undefined') {
-      if (theme === 'system') {
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      }
-      return theme === 'dark' ? 'dark' : 'light';
-    }
-    return 'light';
-  });
+  const [actualTheme, setActualTheme] = useState<'dark' | 'light'>('light');
 
   useEffect(() => {
-    const updateActualTheme = () => {
-      if (theme === 'system') {
-        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        setActualTheme(systemTheme);
-      } else {
-        setActualTheme(theme === 'dark' ? 'dark' : 'light');
-      }
-    };
-
-    updateActualTheme();
-
-    if (theme === 'system') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      mediaQuery.addEventListener('change', updateActualTheme);
-      return () => mediaQuery.removeEventListener('change', updateActualTheme);
-    }
+    setActualTheme('light');
   }, [theme]);
 
   useEffect(() => {
@@ -54,8 +26,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [actualTheme]);
 
   const updateTheme = (newTheme: Theme) => {
-    setTheme(newTheme);
-    localStorage.setItem('recall-theme', newTheme);
+    setTheme('light');
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('recall-theme', 'light');
+    }
   };
 
   const value = {

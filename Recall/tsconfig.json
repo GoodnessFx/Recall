@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "types": ["vite/client", "node"],
+    "baseUrl": "."
+  },
+  "include": ["src", "vite.config.ts"],
+  "exclude": ["src/supabase/functions"]
+}

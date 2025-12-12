@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useTheme } from '../contexts/ThemeContext';
 import { Card } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
@@ -14,11 +13,8 @@ import { Alert, AlertDescription } from '../../components/ui/alert';
 import { 
   Settings, 
   User, 
-  Moon, 
   Sun, 
-  Monitor, 
   Bell, 
-  Sync, 
   Crown,
   LogOut,
   Trash2,
@@ -36,7 +32,6 @@ interface SettingsPanelProps {
 
 export function SettingsPanel({ user }: SettingsPanelProps) {
   const { signOut } = useAuth();
-  const { theme, setTheme } = useTheme();
   const [isLoading, setIsLoading] = useState(false);
   const [preferences, setPreferences] = useState(user?.preferences || {
     theme: 'system',
@@ -226,46 +221,6 @@ export function SettingsPanel({ user }: SettingsPanelProps) {
         </div>
 
         <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <Label>Theme</Label>
-              <p className="text-sm text-muted-foreground">
-                Choose your preferred color scheme
-              </p>
-            </div>
-            <Select 
-              value={theme} 
-              onValueChange={(value: 'light' | 'dark' | 'system') => {
-                setTheme(value);
-                handleUpdatePreferences('theme', value);
-              }}
-            >
-              <SelectTrigger className="w-40">
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="light">
-                  <div className="flex items-center gap-2">
-                    <Sun className="w-4 h-4" />
-                    Light
-                  </div>
-                </SelectItem>
-                <SelectItem value="dark">
-                  <div className="flex items-center gap-2">
-                    <Moon className="w-4 h-4" />
-                    Dark
-                  </div>
-                </SelectItem>
-                <SelectItem value="system">
-                  <div className="flex items-center gap-2">
-                    <Monitor className="w-4 h-4" />
-                    System
-                  </div>
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
           <div className="flex items-center justify-between">
             <div>
               <Label>Default View</Label>

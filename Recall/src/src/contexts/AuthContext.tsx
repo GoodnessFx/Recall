@@ -30,7 +30,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     id: Math.random().toString(36).slice(2),
     email,
     name: name || email.split("@")[0] || "User",
-    avatar: null,
+    avatar: undefined,
     isPremium: false,
     preferences: {
       theme: "system",

@@ -95,6 +95,7 @@ function AppContent() {
         title: `Bookmarked ${type}`,
         content: url,
         source: 'manual',
+        tags: [],
         metadata: {
           url,
           bookmarked_at: new Date().toISOString(),
@@ -268,7 +269,6 @@ function AppContent() {
               memories={memories}
               onMemoryClick={handleMemoryClick}
               isLoading={memoriesLoading}
-              renderPreview={renderMemoryPreview}
             />
           </div>
         );
@@ -289,7 +289,6 @@ function AppContent() {
                   memories={memories}
                   onMemoryClick={handleMemoryClick}
                   isLoading={memoriesLoading}
-                  renderPreview={renderMemoryPreview}
                 />
               ) : (
                 <div className="py-16">
@@ -324,8 +323,6 @@ function AppContent() {
             
             <AIChat 
               onMemoryClick={handleMemoryClick}
-              memories={memories}
-              onCreateMemory={createMemory}
             />
           </div>
         );
@@ -358,7 +355,7 @@ function AppContent() {
                   key={connector.id}
                   connector={connector}
                   onToggle={toggleConnector}
-                  onConfigure={configureConnector}
+                  onConfigure={(id) => configureConnector(id, {})}
                 />
               ))}
             </div>
@@ -463,7 +460,6 @@ function AppContent() {
           activeTab={activeTab}
           onTabChange={setActiveTab}
           isCollapsed={isSidebarCollapsed}
-          user={user}
         />
       </div>
 

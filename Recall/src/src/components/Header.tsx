@@ -8,8 +8,6 @@ import {
   Bell,
   Crown,
   Menu,
-  Sun,
-  Moon,
   Search
 } from 'lucide-react';
 
@@ -33,12 +31,6 @@ export function Header({
   user,
   className = '' 
 }: HeaderProps) {
-  const [isDark, setIsDark] = React.useState(false);
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle('dark');
-  };
 
   return (
     <header className={`sticky top-0 z-50 w-full border-b bg-background/80 backdrop-blur-sm ${className}`}>
@@ -84,15 +76,6 @@ export function Header({
             <Button variant="ghost" size="sm" className="relative">
               <Bell className="w-5 h-5" />
               <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-            </Button>
-
-            {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={toggleTheme}
-            >
-              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </Button>
 
             {/* Settings */}
