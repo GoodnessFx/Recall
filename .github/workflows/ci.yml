@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - 'apps/recall-next/**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - 'apps/recall-next/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/recall-next/package-lock.json
+      - name: Install dependencies
+        run: npm ci
+        working-directory: apps/recall-next
+      - name: Lint
+        run: npm run lint
+        working-directory: apps/recall-next
+      - name: Test
+        run: npm run test
+        working-directory: apps/recall-next
+      - name: Build
+        run: npm run build
+        working-directory: apps/recall-next

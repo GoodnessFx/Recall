@@ -1,0 +1,14 @@
+# Root ignore
+node_modules/
+**/node_modules/
+dist/
+build/
+.next/
+out/
+.vercel/
+.DS_Store
+*.log
+.env*
+coverage/
+**/*.tsbuildinfo
+**/next-env.d.ts
