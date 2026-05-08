@@ -3,8 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/providers";
 import SWRegister from "@/components/sw-register";
-import CommandBar from "@/components/command-bar";
-import VoiceInput from "@/components/voice-input";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,8 +32,6 @@ export default function RootLayout({
         <Providers>
           <SWRegister />
           {children}
-          <CommandBar />
-          <VoiceInput />
         </Providers>
       </body>
     </html>
