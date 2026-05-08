@@ -6,13 +6,11 @@
   "background_color": "#0a0a0a",
   "theme_color": "#0a0a0a",
   "share_target": {
-    "action": "/import/share",
-    "method": "POST",
-    "enctype": "multipart/form-data",
+    "action": "/share",
+    "method": "GET",
     "params": {
-      "title": "title",
-      "text": "text",
-      "url": "url"
+      "url": "url",
+      "title": "title"
     }
   },
   "icons": [

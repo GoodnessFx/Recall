@@ -1,26 +1,91 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* CORE COLORS */
+  --recall-void: #080810;    /* deepest dark — app background */
+  --recall-surface: #0F0F1A;  /* cards, sidebars */
+  --recall-surface-hover: #141425; /* hover state on cards */
+  --recall-border: rgba(255,255,255,0.07); /* subtle borders */
+  --recall-border-hover: rgba(255,255,255,0.14);
+
+  /* SIGNATURE ACCENT — Electric Indigo. Not purple, not blue. Between. */
+  --recall-accent: #6E56CF;
+  --recall-accent-hover: #7C64DC;
+  --recall-accent-glow: rgba(110,86,207,0.25);
+  --recall-accent-subtle: rgba(110,86,207,0.12);
+
+  /* TEXT HIERARCHY */
+  --recall-text-primary: #F2F0FF; /* headlines, important labels */
+  --recall-text-secondary: #9390A8; /* body text, descriptions */
+  --recall-text-tertiary: #5A5870; /* timestamps, metadata */
+
+  /* CATEGORY COLORS — desaturated, not loud */
+  --cat-education: #4A9EFF;
+  --cat-inspiration: #A855F7;
+  --cat-archive: #64748B;
+  --cat-reference: #10B981;
+  --cat-fun: #F59E0B;
+
+  /* PLATFORM COLORS */
+  --platform-twitter: #E7E9EA;
+  --platform-instagram: #E1306C;
+  --platform-tiktok: #FF0050;
+  --platform-youtube: #FF0000;
+  --platform-linkedin: #0A66C2;
+  --platform-reddit: #FF4500;
+
+  /* SPACING */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+
+  /* TYPOGRAPHY */
+  --font-display: 'Geist', 'Inter', sans-serif;
+  --font-body: 'Geist', 'Inter', sans-serif;
+  --font-mono: 'Geist Mono', 'Fira Code', monospace;
+
+  /* RADII */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* MOTION — spring physics, not cubic-bezier */
+  --spring-smooth: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* slight overshoot */
+  --spring-snappy: cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  /* bouncy */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* fast exit */
+
+  /* TRANSITIONS */
+  --transition-fast: 120ms var(--ease-out);
+  --transition-normal: 220ms var(--ease-out);
+  --transition-slow: 400ms var(--ease-out);
+  --transition-spring: 500ms var(--spring-smooth);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-void: var(--recall-void);
+  --color-surface: var(--recall-surface);
+  --color-surface-hover: var(--recall-surface-hover);
+  --color-accent: var(--recall-accent);
+  --color-accent-hover: var(--recall-accent-hover);
+  --font-sans: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--recall-void);
+  color: var(--recall-text-primary);
+  font-family: var(--font-body);
 }
+
+/* Custom Utilities */
+.text-secondary { color: var(--recall-text-secondary); }
+.text-tertiary { color: var(--recall-text-tertiary); }
+.border-recall { border-color: var(--recall-border); }
+.border-recall-hover { border-color: var(--recall-border-hover); }

@@ -1,8 +1,6 @@
-import { createClient } from "@supabase/supabase-js";
+import { createServerClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
 
 export function createSupabaseServerClient() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
+  return createServerClient({ cookies });
 }
