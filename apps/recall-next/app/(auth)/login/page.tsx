@@ -15,6 +15,12 @@ export default function LoginPage() {
     })
   }
 
+  const handleDemoLogin = () => {
+    // Set a demo cookie that lasts for 7 days
+    document.cookie = "recall_demo=true; path=/; max-age=" + 60 * 60 * 24 * 7;
+    window.location.href = "/";
+  }
+
   return (
     <div className="min-h-screen bg-neutral-950 text-white flex flex-col items-center justify-center p-6">
       <div className="w-full max-w-md space-y-8 text-center">
@@ -31,12 +37,21 @@ export default function LoginPage() {
             Sign in to save bookmarks from any platform and search them instantly with AI.
           </p>
           
-          <button
-            onClick={handleLogin}
-            className="w-full bg-white text-black font-semibold py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-neutral-200 transition-all active:scale-[0.98]"
-          >
-            Continue with Google
-          </button>
+          <div className="space-y-3">
+            <button
+              onClick={handleLogin}
+              className="w-full bg-white text-black font-semibold py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-neutral-200 transition-all active:scale-[0.98]"
+            >
+              Continue with Google
+            </button>
+
+            <button
+              onClick={handleDemoLogin}
+              className="w-full bg-white/5 text-white font-semibold py-4 rounded-2xl flex items-center justify-center gap-3 hover:bg-white/10 transition-all active:scale-[0.98] border border-white/10"
+            >
+              Try Demo (No Account)
+            </button>
+          </div>
         </div>
 
         <p className="text-xs text-neutral-500">

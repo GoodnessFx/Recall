@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Home, Search, Import, LogOut, Bookmark } from 'lucide-react'
 import { PageTransition } from '@/components/PageTransition'
+import { cookies } from 'next/headers'
 
 export default async function AppLayout({
   children,
@@ -11,10 +12,15 @@ export default async function AppLayout({
 }) {
   const supabase = createSupabaseServerClient()
   const { data: { user } } = await supabase.auth.getUser()
+  const cookieStore = await cookies()
+  const isDemo = cookieStore.get('recall_demo')?.value === 'true'
 
-  if (!user) {
+  if (!user && !isDemo) {
     redirect('/login')
   }
+
+  const displayEmail = user?.email || 'demo@recall.app'
+  const displayLetter = displayEmail[0].toUpperCase()
 
   return (
     <div className="flex min-h-screen bg-neutral-950 text-white">
@@ -40,10 +46,10 @@ export default async function AppLayout({
         <div className="p-4 border-t border-white/10">
           <div className="px-4 py-3 flex items-center gap-3 mb-4">
             <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs">
-              {user.email?.[0].toUpperCase()}
+              {displayLetter}
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium truncate">{user.email}</p>
+              <p className="text-sm font-medium truncate">{displayEmail}</p>
             </div>
           </div>
           <form action="/api/auth/signout" method="POST">
