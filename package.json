@@ -1,0 +1,11 @@
+{
+  "name": "recall-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix apps/recall-next run dev",
+    "build": "npm --prefix apps/recall-next run build",
+    "start": "npm --prefix apps/recall-next start",
+    "lint": "npm --prefix apps/recall-next run lint",
+    "install:all": "npm install && npm --prefix apps/recall-next install"
+  }
+}
