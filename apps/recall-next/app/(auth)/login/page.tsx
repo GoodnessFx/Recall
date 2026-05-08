@@ -1,7 +1,7 @@
 'use client'
 
 import { createSupabaseBrowserClient } from '@/lib/supabase/client'
-import { Bookmark } from 'lucide-react'
+import { Bookmark, Instagram, Twitter, MessageCircle } from 'lucide-react'
 
 export default function LoginPage() {
   const supabase = createSupabaseBrowserClient()
@@ -51,6 +51,15 @@ export default function LoginPage() {
             >
               Try Demo (No Account)
             </button>
+          </div>
+
+          <div className="pt-4 border-t border-white/5">
+            <p className="text-[10px] text-neutral-500 uppercase tracking-widest mb-4">Supported Socials</p>
+            <div className="flex justify-center gap-6 text-neutral-400">
+              <Twitter size={20} className="hover:text-white transition-colors cursor-pointer" />
+              <Instagram size={20} className="hover:text-white transition-colors cursor-pointer" />
+              <MessageCircle size={20} className="hover:text-white transition-colors cursor-pointer" />
+            </div>
           </div>
         </div>
 

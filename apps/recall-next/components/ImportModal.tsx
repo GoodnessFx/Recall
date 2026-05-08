@@ -63,10 +63,19 @@ export default function ImportModal({ isOpen, onClose, onImportSuccess }: Import
                     platform === p ? 'bg-white text-black' : 'bg-white/5 text-neutral-400 hover:bg-white/10'
                   }`}
                 >
-                  {p === 'urls' ? 'Raw URLs' : p}
+                  {p}
                 </button>
               ))}
             </div>
+          </div>
+
+          <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
+            <p className="text-xs text-neutral-400 leading-relaxed">
+              {platform === 'instagram' && "Upload your 'saved_posts.json' from Instagram export. We'll extract all your saved links."}
+              {platform === 'twitter' && "Upload your 'bookmarks.js' or 'tweets.js' from X archive."}
+              {platform === 'reddit' && "Upload your 'saved.json' from Reddit."}
+              {platform === 'urls' && "Paste a list of URLs, one per line."}
+            </p>
           </div>
 
           <div>
