@@ -22,7 +22,6 @@ export async function GET(request: NextRequest) {
     .from('bookmarks')
     .select('*')
     .eq('user_id', user.id)
-    .order('created_at', { ascending: false })
 
   if (query) {
     dbQuery = dbQuery.textSearch('search_vector', query, { 
@@ -30,10 +29,18 @@ export async function GET(request: NextRequest) {
       config: 'english'
     })
   }
-  if (category && category !== 'All') dbQuery = dbQuery.eq('category', category)
-  if (platform && platform !== 'All') dbQuery = dbQuery.eq('platform', platform)
+  
+  if (category && category !== 'All') {
+    dbQuery = dbQuery.eq('category', category)
+  }
+  
+  if (platform && platform !== 'All') {
+    dbQuery = dbQuery.eq('platform', platform)
+  }
 
-  const { data, error } = await dbQuery.limit(50)
+  const { data, error } = await dbQuery
+    .order('created_at', { ascending: false })
+    .limit(50)
   
   if (error) {
     return NextResponse.json({ error: error.message }, { status: 500 })

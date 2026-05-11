@@ -54,24 +54,28 @@ export function BookmarkCard({ bookmark, onDelete }: { bookmark: Bookmark; onDel
       onClick={() => window.open(bookmark.url, '_blank', 'noopener')}
     >
       {/* Thumbnail */}
-      {bookmark.thumbnail_url && (
-        <div className="relative w-full aspect-[16/9] overflow-hidden">
+      <div className="relative w-full aspect-[16/9] overflow-hidden bg-[#161626]">
+        {bookmark.thumbnail_url ? (
           <img
             src={bookmark.thumbnail_url}
             alt={bookmark.title || 'Bookmark'}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
-          {/* Platform badge — top right of thumbnail */}
-          <div
-            className="absolute top-2 right-2 w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold"
-            style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}
-          >
-            <span className="text-white">{PLATFORM_ICONS[bookmark.platform || 'other']}</span>
+        ) : (
+          <div className="w-full h-full flex items-center justify-center opacity-20">
+            <span className="text-4xl">{PLATFORM_ICONS[bookmark.platform || 'other']}</span>
           </div>
-          {/* Gradient overlay at bottom of thumbnail */}
-          <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#0F0F1A] to-transparent" />
+        )}
+        {/* Platform badge — top right of thumbnail */}
+        <div
+          className="absolute top-2 right-2 w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold"
+          style={{ background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}
+        >
+          <span className="text-white">{PLATFORM_ICONS[bookmark.platform || 'other']}</span>
         </div>
-      )}
+        {/* Gradient overlay at bottom of thumbnail */}
+        <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#0F0F1A] to-transparent" />
+      </div>
 
       {/* Content */}
       <div className="p-4">

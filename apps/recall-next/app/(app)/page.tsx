@@ -48,6 +48,12 @@ export default function HomePage() {
       if (category) params.append('category', category)
       
       const res = await fetch(`/api/search?${params.toString()}`)
+      if (!res.ok) {
+        const errorText = await res.text()
+        console.error('Search API error:', errorText)
+        setBookmarks([])
+        return
+      }
       const data = await res.json()
       setBookmarks(data.bookmarks || [])
       
