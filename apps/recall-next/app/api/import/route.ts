@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
       raw.forEach((item: any) => {
         const urlLabel = item.label_values?.find((lv: any) => lv.label === 'URL')
         if (urlLabel?.value) urls.push(urlLabel.value)
+        else if (item.href) urls.push(item.href)
       })
     } else {
       // Legacy format or alternative structure
@@ -46,12 +47,23 @@ export async function POST(request: NextRequest) {
 
   // TikTok: user_data_tiktok logic
   if (platform === 'tiktok') {
-    // Handling typical TikTok export JSON structure
-    const items = raw.Activity?.['Favorite Videos']?.FavoriteVideoList || []
-    items.forEach((item: any) => {
-      const url = item.VideoLink
-      if (url) urls.push(url)
-    })
+    // Handling multiple TikTok export JSON structures
+    // 1. Likes and Favorites -> Favorite Videos -> FavoriteVideoList -> Link
+    const favVideos = raw['Likes and Favorites']?.['Favorite Videos']?.FavoriteVideoList
+    if (Array.isArray(favVideos)) {
+      favVideos.forEach((item: any) => {
+        if (item.Link) urls.push(item.Link)
+      })
+    }
+    
+    // 2. Activity -> Favorite Videos -> FavoriteVideoList -> VideoLink
+    const activityFavs = raw.Activity?.['Favorite Videos']?.FavoriteVideoList
+    if (Array.isArray(activityFavs)) {
+      activityFavs.forEach((item: any) => {
+        const url = item.VideoLink || item.Link
+        if (url) urls.push(url)
+      })
+    }
   }
 
   // Reddit: saved.json format

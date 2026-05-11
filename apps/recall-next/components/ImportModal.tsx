@@ -55,7 +55,7 @@ export default function ImportModal({ isOpen, onClose, onImportSuccess }: Import
           <div>
             <label className="block text-sm font-medium text-neutral-400 mb-2">Select Platform</label>
             <div className="flex flex-wrap gap-2">
-              {['urls', 'twitter', 'instagram', 'reddit'].map((p) => (
+              {['urls', 'twitter', 'instagram', 'tiktok', 'reddit'].map((p) => (
                 <button
                   key={p}
                   onClick={() => setPlatform(p)}
@@ -72,10 +72,41 @@ export default function ImportModal({ isOpen, onClose, onImportSuccess }: Import
           <div className="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
             <p className="text-xs text-neutral-400 leading-relaxed">
               {platform === 'instagram' && "Upload your 'saved_posts.json' from Instagram export. We'll extract all your saved links."}
+              {platform === 'tiktok' && "Upload your 'user_data_tiktok.json' from TikTok archive."}
               {platform === 'twitter' && "Upload your 'bookmarks.js' or 'tweets.js' from X archive."}
               {platform === 'reddit' && "Upload your 'saved.json' from Reddit."}
               {platform === 'urls' && "Paste a list of URLs, one per line."}
             </p>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            <button
+              onClick={async () => {
+                setIsImporting(true)
+                setError('')
+                try {
+                  const res = await fetch('/api/import/local', { method: 'POST' })
+                  const data = await res.json()
+                  if (data.error) throw new Error(data.error)
+                  onImportSuccess(data.imported)
+                  onClose()
+                } catch (err: any) {
+                  setError(err.message || 'Local import failed. Ensure JSON files are in data/ folders.')
+                } finally {
+                  setIsImporting(false)
+                }
+              }}
+              disabled={isImporting}
+              className="w-full bg-[#6E56CF]/20 text-[#7C64DC] border border-[#6E56CF]/30 font-medium py-2 rounded-xl hover:bg-[#6E56CF]/30 transition-colors flex items-center justify-center gap-2"
+            >
+              {isImporting ? <Loader2 className="w-4 h-4 animate-spin" /> : <Upload className="w-4 h-4" />}
+              Import from Server Data (Local JSONs)
+            </button>
+            <div className="flex items-center gap-2">
+              <div className="h-px bg-white/10 flex-1" />
+              <span className="text-[10px] text-neutral-600 uppercase tracking-widest">or manual paste</span>
+              <div className="h-px bg-white/10 flex-1" />
+            </div>
           </div>
 
           <div>
