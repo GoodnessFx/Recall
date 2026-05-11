@@ -9,7 +9,8 @@ Given a URL, title, and description of a saved bookmark, output ONLY valid JSON 
 {
   "category": "Education" | "Inspiration" | "Archive" | "Reference" | "Fun",
   "summary": "10 words max describing the content",
-  "keywords": ["keyword1", "keyword2", "keyword3"]
+  "keywords": ["keyword1", "keyword2", "keyword3"],
+  "video_ideas": ["idea1", "idea2"] // Optional: only if the content is a video or highly visual
 }
 
 Category rules:
@@ -19,6 +20,9 @@ Category rules:
 - Fun: memes, entertainment, sports, humor, movie trailers
 - Archive: everything else, personal interest, "watch later"
 
+Video Ideas rule:
+- If the content is from TikTok, Instagram Reels, or YouTube, suggest 1-2 creative video ideas or content angles the user could take based on this save.
+
 Output ONLY the JSON object. No markdown. No explanation. No backticks.`
 
 export async function categorizeWithGemini(
@@ -26,7 +30,7 @@ export async function categorizeWithGemini(
   title: string,
   description: string,
   url: string
-): Promise<{ category: string; summary: string; keywords: string[] }> {
+): Promise<{ category: string; summary: string; keywords: string[]; video_ideas?: string[] }> {
   try {
     const prompt = `URL: ${url}\nTitle: ${title}\nDescription: ${description}`
     const result = await model.generateContent([SYSTEM_PROMPT, prompt])
@@ -41,6 +45,7 @@ export async function categorizeWithGemini(
       category: parsed.category || 'Archive',
       summary: parsed.summary || '',
       keywords: parsed.keywords || [],
+      video_ideas: parsed.video_ideas || [],
     }
   } catch (error) {
     console.error('Gemini categorization failed:', error)

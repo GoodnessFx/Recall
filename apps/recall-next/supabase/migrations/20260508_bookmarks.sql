@@ -7,9 +7,11 @@ create table if not exists bookmarks (
   thumbnail_url text,
   platform text, -- 'twitter', 'instagram', 'tiktok', 'youtube', 'linkedin', 'reddit', 'other'
   category text check (category in ('Education', 'Inspiration', 'Archive', 'Reference', 'Fun')),
-  summary text,
-  keywords text[], -- array of strings
-  raw_og jsonb, -- store full OG data as backup
+  summary text, 
+   keywords text[], -- array of strings 
+   notes text, -- user's personal notes
+   collection text default 'Uncategorized', -- manual grouping
+   raw_og jsonb, -- store full OG data as backup
   created_at timestamptz default now(),
   search_vector tsvector generated always as (
     to_tsvector('english',

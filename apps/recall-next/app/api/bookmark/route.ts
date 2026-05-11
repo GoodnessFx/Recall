@@ -29,13 +29,18 @@ export async function POST(request: NextRequest) {
   // 2. Detect platform
   const platform = detectPlatform(url)
 
-  // 3. AI categorization (fire and forget pattern — save first, update after)
+  // 3. Enhancement for TikTok (TikTok often returns poor OG data for shared links)
+  if (platform === 'tiktok' && !og.title) {
+    og.title = `TikTok from ${new URL(url).hostname}`
+  }
+
+  // 4. AI categorization (fire and forget pattern — save first, update after)
   const { data: saved, error: insertError } = await supabase
     .from('bookmarks')
     .insert({
       user_id: user.id,
       url,
-      title: og.title,
+      title: og.title || 'Shared Video',
       description: og.description,
       thumbnail_url: og.image,
       platform,

@@ -35,13 +35,23 @@ export async function POST(request: NextRequest) {
         if (urlLabel?.value) urls.push(urlLabel.value)
       })
     } else {
-      // Legacy format
-      const items = raw.saved_saved_media || []
+      // Legacy format or alternative structure
+      const items = raw.saved_saved_media || raw.saved_posts || []
       items.forEach((item: any) => {
-        const url = item.string_map_data?.['External ID']?.value || item.string_map_data?.Link?.value
+        const url = item.string_map_data?.['External ID']?.value || item.string_map_data?.Link?.value || item.href
         if (url) urls.push(url)
       })
     }
+  }
+
+  // TikTok: user_data_tiktok logic
+  if (platform === 'tiktok') {
+    // Handling typical TikTok export JSON structure
+    const items = raw.Activity?.['Favorite Videos']?.FavoriteVideoList || []
+    items.forEach((item: any) => {
+      const url = item.VideoLink
+      if (url) urls.push(url)
+    })
   }
 
   // Reddit: saved.json format

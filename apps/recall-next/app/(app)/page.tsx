@@ -81,7 +81,9 @@ export default function HomePage() {
       <header className="mb-12 space-y-8">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <LayoutGrid className="text-[#6E56CF] w-6 h-6" />
+            <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center border border-white/10">
+              <LayoutGrid className="text-[#6E56CF] w-5 h-5" />
+            </div>
             <h1 className="text-2xl font-light tracking-tight text-white">My <span className="text-[#6E56CF]">Recall</span></h1>
           </div>
           <div className="flex items-center gap-3">
