@@ -49,8 +49,8 @@ export default function HomePage() {
       
       const res = await fetch(`/api/search?${params.toString()}`)
       if (!res.ok) {
-        const errorText = await res.text()
-        console.error('Search API error:', errorText)
+        const errorData = await res.json().catch(() => ({}))
+        console.error('Search API error:', errorData.error || res.statusText)
         setBookmarks([])
         return
       }
@@ -93,6 +93,22 @@ export default function HomePage() {
             <h1 className="text-2xl font-light tracking-tight text-white">My <span className="text-[#6E56CF]">Recall</span></h1>
           </div>
           <div className="flex items-center gap-3">
+            <button 
+              onClick={async () => {
+                const res = await fetch('/api/import/local', { method: 'POST' })
+                const data = await res.json()
+                if (data.status === 'success') {
+                  alert(`Successfully imported ${data.imported} items!`)
+                  fetchBookmarks()
+                } else {
+                  alert(`Import failed: ${data.error}`)
+                }
+              }}
+              className="bg-white/5 text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-white/10 border border-white/10 transition-all"
+            >
+              <Upload className="w-4 h-4 text-[#6E56CF]" />
+              Sync Local
+            </button>
             <button 
               onClick={() => setIsRecallAIOpen(true)}
               className="bg-white/5 text-white px-4 py-2 rounded-xl font-medium flex items-center gap-2 hover:bg-white/10 border border-white/10 transition-all"

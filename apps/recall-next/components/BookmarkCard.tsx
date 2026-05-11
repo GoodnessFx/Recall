@@ -66,6 +66,16 @@ export function BookmarkCard({ bookmark, onDelete }: { bookmark: Bookmark; onDel
             <span className="text-4xl">{PLATFORM_ICONS[bookmark.platform || 'other']}</span>
           </div>
         )}
+        
+        {/* Play Icon Overlay for Videos */}
+        {(bookmark.platform === 'tiktok' || bookmark.platform === 'instagram' || bookmark.platform === 'youtube') && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none group-hover:opacity-100 transition-opacity">
+            <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 shadow-2xl">
+              <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[14px] border-l-white border-b-[8px] border-b-transparent ml-1" />
+            </div>
+          </div>
+        )}
+
         {/* Platform badge — top right of thumbnail */}
         <div
           className="absolute top-2 right-2 w-6 h-6 rounded-lg flex items-center justify-center text-xs font-bold"
