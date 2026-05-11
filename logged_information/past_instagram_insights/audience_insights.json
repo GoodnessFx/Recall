@@ -1,0 +1,77 @@
+{
+  "organic_insights_audience": [
+    {
+      "title": "",
+      "media_map_data": {
+        
+      },
+      "string_map_data": {
+        "Date range": {
+          "href": "",
+          "value": "Feb 6 - May 6",
+          "timestamp": 0
+        },
+        "Followers": {
+          "href": "",
+          "value": "196",
+          "timestamp": 0
+        },
+        "Followers delta": {
+          "href": "",
+          "value": "-1.6% vs Nov 8 - Feb 5",
+          "timestamp": 0
+        },
+        "Follows": {
+          "href": "",
+          "value": "2",
+          "timestamp": 0
+        },
+        "Unfollows": {
+          "href": "",
+          "value": "6",
+          "timestamp": 0
+        },
+        "Overall followers": {
+          "href": "",
+          "value": "-4",
+          "timestamp": 0
+        },
+        "Follower percentage by town/city": {
+          "href": "",
+          "value": "Lagos: 30.6%, Abuja: 3.6%, Ibadan: 3.6%, Benin: 1.8%, Damaturu: 1.2%",
+          "timestamp": 0
+        },
+        "Follower percentage by country": {
+          "href": "",
+          "value": "Nigeria: 60.1%, United States: 6.1%, India: 4.2%, Pakistan: 3%, Ghana: 2.4%",
+          "timestamp": 0
+        },
+        "Follower percentage by age for all genders": {
+          "href": "",
+          "value": "13-17: 0.6%, 18-24: 41.1%, 25-34: 41.7%, 35-44: 10.4%, 45-54: 3.6%, 55-64: 0.6%, 65+: 1.8%",
+          "timestamp": 0
+        },
+        "Follower percentage by age for men": {
+          "href": "",
+          "value": "13-17: 0%, 18-24: 39%, 25-34: 46.8%, 35-44: 12.5%, 45-54: 1.5%, 55-64: 0%, 65+: 0%",
+          "timestamp": 0
+        },
+        "Follower percentage by age for women": {
+          "href": "",
+          "value": "13-17: 0%, 18-24: 61.1%, 25-34: 33.3%, 35-44: 2.7%, 45-54: 0%, 55-64: 2.7%, 65+: 0%",
+          "timestamp": 0
+        },
+        "Total follower percentage for men": {
+          "href": "",
+          "value": "64%",
+          "timestamp": 0
+        },
+        "Total follower percentage for women": {
+          "href": "",
+          "value": "36%",
+          "timestamp": 0
+        }
+      }
+    }
+  ]
+}

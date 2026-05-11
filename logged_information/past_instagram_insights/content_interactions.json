@@ -1,0 +1,87 @@
+{
+  "organic_insights_interactions": [
+    {
+      "title": "",
+      "media_map_data": {
+        
+      },
+      "string_map_data": {
+        "Date range": {
+          "href": "",
+          "value": "Feb 6 - May 6",
+          "timestamp": 0
+        },
+        "Content interactions": {
+          "href": "",
+          "value": "0",
+          "timestamp": 0
+        },
+        "Content interactions delta": {
+          "href": "",
+          "value": "0% vs Nov 8 - Feb 5",
+          "timestamp": 0
+        },
+        "Post interactions": {
+          "href": "",
+          "value": "0",
+          "timestamp": 0
+        },
+        "Post interactions delta": {
+          "href": "",
+          "value": "0% vs Nov 8 - Feb 5",
+          "timestamp": 0
+        },
+        "Story interactions": {
+          "href": "",
+          "value": "0",
+          "timestamp": 0
+        },
+        "Story interactions delta": {
+          "href": "",
+          "value": "0% vs Nov 8 - Feb 5",
+          "timestamp": 0
+        },
+        "Video interactions": {
+          "href": "",
+          "value": "0",
+          "timestamp": 0
+        },
+        "Video interactions delta": {
+          "href": "",
+          "value": "0% vs Nov 8 - Feb 5",
+          "timestamp": 0
+        },
+        "Reels interactions": {
+          "href": "",
+          "value": "0",
+          "timestamp": 0
+        },
+        "Reels interactions delta": {
+          "href": "",
+          "value": "0% vs Nov 8 - Feb 5",
+          "timestamp": 0
+        },
+        "Live video interactions": {
+          "href": "",
+          "value": "0",
+          "timestamp": 0
+        },
+        "Live video interactions delta": {
+          "href": "",
+          "value": "0% vs Nov 8 - Feb 5",
+          "timestamp": 0
+        },
+        "Accounts engaged": {
+          "href": "",
+          "value": "0",
+          "timestamp": 0
+        },
+        "Accounts engaged delta": {
+          "href": "",
+          "value": "0% vs Nov 8 - Feb 5",
+          "timestamp": 0
+        }
+      }
+    }
+  ]
+}

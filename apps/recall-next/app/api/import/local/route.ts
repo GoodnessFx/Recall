@@ -14,25 +14,32 @@ export async function POST(request: NextRequest) {
 
   // 1. TikTok
   try {
-    const tiktokPath = path.join(process.cwd(), 'data/tiktok/user_data_tiktok.json')
-    if (fs.existsSync(tiktokPath)) {
-      const raw = JSON.parse(fs.readFileSync(tiktokPath, 'utf8'))
-      
-      // Version 1
-      const favVideos = raw['Likes and Favorites']?.['Favorite Videos']?.FavoriteVideoList
-      if (Array.isArray(favVideos)) {
-        favVideos.forEach((item: any) => {
-          if (item.Link) urls.push(item.Link)
-        })
-      }
-      
-      // Version 2
-      const activityFavs = raw.Activity?.['Favorite Videos']?.FavoriteVideoList
-      if (Array.isArray(activityFavs)) {
-        activityFavs.forEach((item: any) => {
-          const url = item.VideoLink || item.Link
-          if (url) urls.push(url)
-        })
+    const tiktokLocations = [
+      path.join(process.cwd(), 'data/tiktok/user_data_tiktok.json'),
+      path.join(process.cwd(), 'user_data_tiktok.json'),
+      path.join(process.cwd(), '..', 'user_data_tiktok.json'),
+    ]
+
+    for (const tiktokPath of tiktokLocations) {
+      if (fs.existsSync(tiktokPath)) {
+        const raw = JSON.parse(fs.readFileSync(tiktokPath, 'utf8'))
+        
+        // Version 1
+        const favVideos = raw['Likes and Favorites']?.['Favorite Videos']?.FavoriteVideoList
+        if (Array.isArray(favVideos)) {
+          favVideos.forEach((item: any) => {
+            if (item.Link) urls.push(item.Link)
+          })
+        }
+        
+        // Version 2
+        const activityFavs = raw.Activity?.['Favorite Videos']?.FavoriteVideoList
+        if (Array.isArray(activityFavs)) {
+          activityFavs.forEach((item: any) => {
+            const url = item.VideoLink || item.Link
+            if (url) urls.push(url)
+          })
+        }
       }
     }
   } catch (e) {
@@ -41,19 +48,28 @@ export async function POST(request: NextRequest) {
 
   // 2. Instagram
   try {
-    const igDir = path.join(process.cwd(), 'data/instagram')
-    if (fs.existsSync(igDir)) {
-      const files = ['saved_posts.json', 'liked_posts.json']
-      for (const file of files) {
-        const filePath = path.join(igDir, file)
-        if (fs.existsSync(filePath)) {
-          const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'))
-          if (Array.isArray(raw)) {
-            raw.forEach((item: any) => {
-              const urlLabel = item.label_values?.find((lv: any) => lv.label === 'URL')
-              if (urlLabel?.value) urls.push(urlLabel.value)
-              else if (item.href) urls.push(item.href)
-            })
+    const igLocations = [
+      path.join(process.cwd(), 'data/instagram'),
+      path.join(process.cwd(), 'your_instagram_activity/saved'),
+      path.join(process.cwd(), 'your_instagram_activity/likes'),
+      path.join(process.cwd(), '..', 'your_instagram_activity/saved'), // check one level up if called from app dir
+      path.join(process.cwd(), '..', 'your_instagram_activity/likes'),
+    ]
+
+    for (const igDir of igLocations) {
+      if (fs.existsSync(igDir)) {
+        const files = ['saved_posts.json', 'liked_posts.json']
+        for (const file of files) {
+          const filePath = path.join(igDir, file)
+          if (fs.existsSync(filePath)) {
+            const raw = JSON.parse(fs.readFileSync(filePath, 'utf8'))
+            if (Array.isArray(raw)) {
+              raw.forEach((item: any) => {
+                const urlLabel = item.label_values?.find((lv: any) => lv.label === 'URL')
+                if (urlLabel?.value) urls.push(urlLabel.value)
+                else if (item.href) urls.push(item.href)
+              })
+            }
           }
         }
       }

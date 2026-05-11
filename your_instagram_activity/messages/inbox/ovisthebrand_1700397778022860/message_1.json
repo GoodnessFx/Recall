@@ -1,0 +1,81 @@
+{
+  "participants": [
+    {
+      "name": "OVIS THE BRAND"
+    },
+    {
+      "name": "IG001"
+    }
+  ],
+  "messages": [
+    {
+      "sender_name": "OVIS THE BRAND",
+      "timestamp_ms": 1747570081470,
+      "content": "No problem \nWhenever you're ready.",
+      "is_geoblocked_for_viewer": false,
+      "is_unsent_image_by_messenger_kid_parent": false
+    },
+    {
+      "sender_name": "OVIS THE BRAND",
+      "timestamp_ms": 1747570072573,
+      "content": "Unilag",
+      "is_geoblocked_for_viewer": false,
+      "is_unsent_image_by_messenger_kid_parent": false
+    },
+    {
+      "sender_name": "IG001",
+      "timestamp_ms": 1747565513126,
+      "content": "Where\u00e2\u0080\u0099s your location?",
+      "is_geoblocked_for_viewer": false,
+      "is_unsent_image_by_messenger_kid_parent": false
+    },
+    {
+      "sender_name": "IG001",
+      "timestamp_ms": 1747565472929,
+      "content": "I\u00e2\u0080\u0099ll get to you when I am ready to make purchases",
+      "is_geoblocked_for_viewer": false,
+      "is_unsent_image_by_messenger_kid_parent": false
+    },
+    {
+      "sender_name": "IG001",
+      "timestamp_ms": 1747565439814,
+      "content": "Got your instagram from X",
+      "is_geoblocked_for_viewer": false,
+      "is_unsent_image_by_messenger_kid_parent": false
+    },
+    {
+      "sender_name": "IG001",
+      "timestamp_ms": 1747565426914,
+      "content": "Hello chief",
+      "is_geoblocked_for_viewer": false,
+      "is_unsent_image_by_messenger_kid_parent": false
+    },
+    {
+      "sender_name": "OVIS THE BRAND",
+      "timestamp_ms": 1747397668290,
+      "content": "Good afternoon",
+      "is_geoblocked_for_viewer": false,
+      "is_unsent_image_by_messenger_kid_parent": false
+    },
+    {
+      "sender_name": "OVIS THE BRAND",
+      "timestamp_ms": 1747397664121,
+      "content": "Hello",
+      "is_geoblocked_for_viewer": false,
+      "is_unsent_image_by_messenger_kid_parent": false
+    },
+    {
+      "sender_name": "IG001",
+      "timestamp_ms": 1747331482990,
+      "content": "Hey man",
+      "is_geoblocked_for_viewer": false,
+      "is_unsent_image_by_messenger_kid_parent": false
+    }
+  ],
+  "title": "OVIS THE BRAND",
+  "is_still_participant": true,
+  "thread_path": "inbox/ovisthebrand_1700397778022860",
+  "magic_words": [
+    
+  ]
+}
